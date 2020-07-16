@@ -13,6 +13,7 @@ server:
 steps:
   - name: build
     commands:
+      - cd tikoua
       - ./gradlew clean build
   - name: copy
     commands:
