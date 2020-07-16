@@ -1,0 +1,14 @@
+apply plugin: 'com.github.spotbugs'
+
+spotbugs {
+    ignoreFailures = false
+    showProgress = true
+    reportLevel = "high"
+}
+
+spotbugsMain {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}

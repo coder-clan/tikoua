@@ -1,0 +1,7 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion ="${checkstyleVersion}"
+    maxWarnings = 0
+    configFile = file("${rootProject.projectDir}/gradle/checkstyle/checkstyle.xml")
+}

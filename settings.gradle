@@ -1,0 +1,4 @@
+rootProject.name = 'tikoua'
+include 'tikoua-app'
+include 'tikoua-ui'
+

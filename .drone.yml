@@ -1,0 +1,32 @@
+kind: pipeline
+type: ssh
+name: default
+
+server:
+  host:
+    from_secret: SERVER_HOST
+  user:
+    from_secret: SERVER_USER
+  password:
+    from_secret: SERVER_PASSWORD
+
+steps:
+  - name: build
+    commands:
+      - ./gradlew clean build
+  - name: copy
+    commands:
+      - cp tikoua-app/build/lib/tikoua-app.jar /home/tikoua/tikoua-app-latest.jar
+  - name: stop
+    failure: ignore
+    commands:
+      - cd /home/tikoua/
+      - ./stop.sh
+      - yes | mv tikoua-app.jar tikoua-app.jar.bak
+  - name: rename
+    commands:
+      - cd /home/tikoua/
+      - mv tikoua-app-latest.jar tikoua-app.jar
+  - name: start
+    commands:
+      - ./start.sh
