@@ -13,7 +13,7 @@ server:
 steps:
   - name: build
     commands:
-      - cd tikoua
+      - chmox +x ./gradlew
       - ./gradlew clean build
   - name: copy
     commands:
@@ -22,6 +22,7 @@ steps:
     failure: ignore
     commands:
       - cd /home/tikoua/
+      - chmox +x ./stop.sh
       - ./stop.sh
       - yes | mv tikoua-app.jar tikoua-app.jar.bak
   - name: rename
@@ -30,4 +31,5 @@ steps:
       - mv tikoua-app-latest.jar tikoua-app.jar
   - name: start
     commands:
+      - chmod +x ./start.sh
       - ./start.sh
